@@ -120,5 +120,8 @@
       }
     }
   },
-  "defaultProject": "marvelTest"
+  "defaultProject": "marvelTest",
+  "cli": {
+    "analytics": false
+  }
 }
