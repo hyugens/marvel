@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {MarvelApiService} from '../../services/marvel-api.service';
+import {Observable} from 'rxjs';
+import {Data} from '../../interfaces/character';
 
 @Component({
   selector: 'app-buscador',
@@ -6,10 +9,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./buscador.component.css']
 })
 export class BuscadorComponent implements OnInit {
+  characters$: Observable<Data>
 
-  constructor() { }
+  constructor(private marvelApi: MarvelApiService) { }
 
   ngOnInit(): void {
+    this.characters$ = this.marvelApi.getCharacters();
   }
 
 }
