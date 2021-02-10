@@ -4,14 +4,24 @@
       <img class="imagen" [src]="heroImg"  [alt]="heroName">
     </div>
     <div class="description">
-      <h4>{{ heroName }}</h4>
-      <p>{{ description }}</p>
+      <div style="min-height: 200px; max-height: 300px">
+        <h4>{{ heroName }}</h4>
+        <p>{{ description }}</p>
+      </div>
       <div class="myButton">VIEW MORE</div>
     </div>
   </div>
-  <div class="footer">
-    <div style="width: 40%" *ngFor="let storie of related; let i = index">
-      <label *ngIf="i < 4" > {{ storie.name }}</label>
+  <div>
+    <span>Related comics</span>
+    <div class="footer">
+      <ng-container *ngFor="let storie of related; let i = index">
+        <div  *ngIf="i < 4" style="width: 40%; height: 20px; margin: 5px">
+          <label> {{ storie.name | slice:0:25 }}</label>
+        </div>
+        <div  *ngIf="(i%2 > 0) && related.length < 4" style="width: 40%; height: 20px; margin: 5px">
+        </div>
+      </ng-container>
     </div>
+
   </div>
 </div>

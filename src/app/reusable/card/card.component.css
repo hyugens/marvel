@@ -1,5 +1,6 @@
 img {
   width: 180px;
+  height: 180px;
 }
 
 .containerCard {
@@ -12,14 +13,18 @@ img {
 }
 
 .imagen {
+  position: relative;
+  top: -15px;
+  left: -15px;
+
   border-radius: 200px 200px 200px 200px;
   -moz-border-radius: 200px 200px 200px 200px;
   -webkit-border-radius: 200px 200px 200px 200px;
   border: 0 solid #000000;
 
-  -webkit-box-shadow: 10px 4px 8px 2px rgba(158,158,158,0.32);
-  -moz-box-shadow: 10px 4px 8px 2px rgba(158,158,158,0.32);
-  box-shadow: 10px 4px 8px 2px rgba(158,158,158,0.32);
+  -webkit-box-shadow: 10px 4px 8px 2px rgba(158,158,158,0.5);
+  -moz-box-shadow: 10px 4px 8px 2px rgba(158,158,158,0.5);
+  box-shadow: 10px 4px 8px 2px rgba(158,158,158,0.5);
 }
 
 
@@ -28,6 +33,7 @@ img {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+  min-height: 60px;
 }
 
 .viewMoreButton {
