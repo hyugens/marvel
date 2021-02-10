@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {FavoritosServiceService} from '../../services/favoritos-service.service';
 
 @Component({
   selector: 'app-favoritos',
@@ -7,9 +8,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FavoritosComponent implements OnInit {
 
-  constructor() { }
+  favoritos = [];
+
+  constructor(private favoritoService: FavoritosServiceService) { }
 
   ngOnInit(): void {
+    this.listenFavourite();
+    this.listenRemoveFavourite();
+  }
+
+  listenFavourite() {
+    this.favoritoService.listenAddFavourite().subscribe((favorito) => {
+      this.favoritos.push(favorito);
+    });
+  }
+
+  listenRemoveFavourite() {
+    this.favoritoService.listenRemoveFavourite().subscribe((index) => {
+      this.favoritos.splice(index, 1);
+    });
   }
 
 }
