@@ -11,17 +11,23 @@
 <!--    </form>-->
   </nav>
 </header>
-<div>
-  <div class="spaceBetween">
-    <div class="centrado" >
-      <img class="characterLogo" src="./assets/icons/characters.png" alt="personajes">
-      <span>Characters</span>
+<div class="container">
+  <div class="containerBuscador">
+    <div class="spaceBetween">
+      <div class="centrado" >
+        <img class="characterLogo" src="./assets/icons/characters.png" alt="personajes">
+        <span>Characters</span>
+      </div>
+      <div>
+        <label>
+          <input maxlength="128" placeholder="Sort by" size="15" type="text" />
+        </label>
+      </div>
     </div>
-    <div>
-      <label>
-        <input maxlength="128" placeholder="Sort by" size="15" type="text" />
-      </label>
-    </div>
+
+    <characters [characters]="characters$ | async" ></characters>
+    <footer> Aquí va el paginador</footer>
   </div>
+  <app-favoritos></app-favoritos>
 </div>
-<footer></footer>
+

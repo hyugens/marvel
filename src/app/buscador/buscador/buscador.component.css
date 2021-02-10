@@ -1,5 +1,5 @@
 nav {
-  background-color: black;
+  background-color: #2D2727;
   height: 50px;
 }
 
@@ -10,7 +10,7 @@ nav {
 }
 
 .spaceBetween {
-  margin-top: 10px;
+  padding-top: 10px;
   display: flex;
   justify-content: space-between;
 }
@@ -28,6 +28,15 @@ input {
   margin-left: 10%;
   width: 40%;
   height: 40%;
+}
+
+.container {
+  display: flex;
+  background-color: #F4F4F4;
+}
+
+.containerBuscador {
+  width: 80%;
 }
 
 
