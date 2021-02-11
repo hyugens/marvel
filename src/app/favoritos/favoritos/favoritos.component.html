@@ -7,10 +7,10 @@
   <div class="body">
     <div *ngFor="let fav of favoritos">
       <div>
-        <img [src]="fav.url" [alt]="fav.name">
+        <img style="width: 100px" [src]="fav.img" [alt]="fav.title">
       </div>
       <div>
-        <span> {{ fav.description }} </span>
+        <span> {{ fav.title }} </span>
       </div>
     </div>
   </div>
