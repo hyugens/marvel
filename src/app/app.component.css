@@ -3,6 +3,36 @@ nav {
   height: 50px;
 }
 
+.inputBuscado{
+  position: absolute;
+  width: calc(100% - 100px);
+  right: 0;
+}
+
+form {
+  display: flex;
+  justify-content: center;
+}
+
+input {
+  width: 25%;
+  min-width: 170px;
+}
+
+.divImg {
+  background: white;
+  cursor: pointer;
+  height: 26px;
+  margin: 1px 0;
+  width: 3%;
+  min-width: 26px;
+}
+
+.btnImg {
+  width: 100%;
+  height: 100%;
+}
+
 .centrado {
   display: flex;
   flex-direction: row;
@@ -15,6 +45,8 @@ nav {
 }
 
 .marvelLogo {
+  position: absolute;
+  left: 0;
   width: 80px;
   padding: 9px;
 }
