@@ -47,13 +47,12 @@ export class PaginatorComponent implements OnInit, OnChanges {
   }
 
   next() {
-    this.actualPage++;
+    if (this.actualPage < this.totalPages) this.actualPage++;
     console.log('ActualPage: ', this.actualPage);
-
   }
 
   previous() {
-    this.actualPage--;
+    if (this.actualPage > 1) this.actualPage--;
     console.log('ActualPage: ', this.actualPage);
   }
 
