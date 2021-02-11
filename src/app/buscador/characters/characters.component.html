@@ -1,6 +1,7 @@
 <div class="container">
   <app-card *ngFor="let item of characters?.results"
             class="cardElement"
+            [titleButton]="'VIEW MORE'"
             [idHero]="item?.id"
             [heroImg]="item?.thumbnail?.path + '.' + item?.thumbnail?.extension"
             [heroName]="item?.name"

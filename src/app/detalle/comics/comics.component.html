@@ -1,1 +1,11 @@
-<p>comics works!</p>
+<div class="container">
+  <app-card *ngFor="let item of comics?.results"
+            class="cardElement"
+            [titleButton]="'DETAIL'"
+            [idHero]="item?.id"
+            [heroImg]="item?.thumbnail?.path + '.' + item?.thumbnail?.extension"
+            [heroName]="item?.title"
+            [description]="item?.description"
+            (viewMoreEvent)="comicSelected($event)"
+  ></app-card>
+</div>

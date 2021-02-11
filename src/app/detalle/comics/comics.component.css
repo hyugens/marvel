@@ -1,0 +1,10 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  /*margin-top: 15px;*/
+}
+
+.cardElement {
+  width: 40%;
+  margin: 15px
+}

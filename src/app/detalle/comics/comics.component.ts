@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
-import {Data} from '../../interfaces/character';
+import {DataComicsCharacter} from '../../interfaces/comicsCharacter';
 
 @Component({
   selector: 'app-comics',
@@ -8,7 +8,7 @@ import {Data} from '../../interfaces/character';
 })
 export class ComicsComponent implements OnInit, OnChanges {
 
-  @Input() comics: Data;
+  @Input() comics: DataComicsCharacter;
   @Output() detailEvent = new EventEmitter<number>();
   constructor() { }
 
@@ -21,4 +21,7 @@ export class ComicsComponent implements OnInit, OnChanges {
     }
   }
 
+  comicSelected(id: number) {
+    this.detailEvent.emit(id);
+  }
 }

@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment';
 import {pluck} from 'rxjs/operators';
 import {Data, ResponseCharacterMarvel} from '../interfaces/character';
+import {DataComicsCharacter, ResponseComicsCharacter} from '../interfaces/comicsCharacter';
 
 @Injectable({
   providedIn: 'root'
@@ -20,8 +21,8 @@ export class MarvelApiService {
 
   getComicsHero(idHero) {
     const url = `${environment.url + environment.characters}/${idHero}/comics`;
-    return this.http.get<ResponseCharacterMarvel>(url).pipe(
-      pluck<ResponseCharacterMarvel, Data>('data')
+    return this.http.get<ResponseComicsCharacter>(url).pipe(
+      pluck<ResponseComicsCharacter, DataComicsCharacter>('data')
     );
   }
 

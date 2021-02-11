@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {MarvelApiService} from '../../services/marvel-api.service';
 import {Observable} from 'rxjs';
-import {Data} from '../../interfaces/character';
+import {DataComicsCharacter} from '../../interfaces/comicsCharacter';
 
 @Component({
   selector: 'app-detalle',
@@ -10,7 +10,7 @@ import {Data} from '../../interfaces/character';
   styleUrls: ['./detalle.component.css']
 })
 export class DetalleComponent implements OnInit {
-  infoCharacter$: Observable<Data>;
+  infoCharacter$: Observable<DataComicsCharacter>;
   constructor(public route: ActivatedRoute,
               private marvelApiService: MarvelApiService) { }
 
