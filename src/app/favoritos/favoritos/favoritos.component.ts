@@ -13,19 +13,27 @@ export class FavoritosComponent implements OnInit {
   constructor(private favoritoService: FavoritosServiceService) { }
 
   ngOnInit(): void {
+    const favouritosSave = JSON.parse(localStorage.getItem('favoritos'))
+    this.favoritos = favouritosSave ? favouritosSave : [];
     this.listenFavourite();
     this.listenRemoveFavourite();
   }
 
   listenFavourite() {
     this.favoritoService.listenAddFavourite().subscribe((favorito) => {
-      this.favoritos.push(favorito);
+      const favoritoExiste = this.favoritos.findIndex((f) => f.id === favorito.id );
+      if (favoritoExiste >= 0) {
+      } else {
+        this.favoritos.push(favorito);
+        localStorage.setItem('favoritos', JSON.stringify(this.favoritos));
+      }
     });
   }
 
   listenRemoveFavourite() {
     this.favoritoService.listenRemoveFavourite().subscribe((index) => {
       this.favoritos.splice(index, 1);
+      localStorage.setItem('favoritos', JSON.stringify(this.favoritos));
     });
   }
 
