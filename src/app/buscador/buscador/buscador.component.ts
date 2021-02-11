@@ -23,4 +23,7 @@ export class BuscadorComponent implements OnInit {
     this.router.navigate(['detalle/'+idHero]);
   }
 
+  navigateTo(page: number) {
+    console.log('NAVIGATE TO BUSCADOR: ', page);
+  }
 }

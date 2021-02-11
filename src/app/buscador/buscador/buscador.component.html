@@ -20,4 +20,13 @@
 
   </div>
 </div>
+<footer>
+  <app-paginator
+    [maxResults]="20"
+    [limitLength]="15"
+    (nextPage)="navigateTo($event)"
+  >
+
+  </app-paginator>
+</footer>
 
