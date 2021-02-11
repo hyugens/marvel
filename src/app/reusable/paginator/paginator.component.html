@@ -1,11 +1,19 @@
 <div class="container">
-  <div class="button" *ngIf="pages.length > 1">
+  <div class="button" (click)="previous()" *ngIf="pages.length > 1">
     <span> < </span>
   </div>
-  <div class="button" *ngFor="let page of pages" (click)="navigateTo(page)">
-    <span>{{ page }}</span>
+  <div class="button" *ngFor="let page of pages" >
+    <div *ngIf="page.id === 'less'" (click)="less()" >
+      <span >{{ page.tag }}</span>
+    </div>
+    <div *ngIf="page.id === 'more'" (click)="more()" >
+      <span>{{ page.tag }}</span>
+    </div>
+    <div *ngIf="page.id !== 'less' && page.id !== 'more' " (click)="navigateTo(page.id)">
+      <span>{{ page.tag }}</span>
+    </div>
   </div>
-  <div class="button" *ngIf="pages.length > 1">
+  <div class="button" (click)="next()" *ngIf="pages.length > 1">
     <span> > </span>
   </div>
 </div>
