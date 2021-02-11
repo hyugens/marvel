@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {MarvelApiService} from '../../services/marvel-api.service';
 import {Observable} from 'rxjs';
 import {Data} from '../../interfaces/character';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-buscador',
@@ -11,14 +12,15 @@ import {Data} from '../../interfaces/character';
 export class BuscadorComponent implements OnInit {
   characters$: Observable<Data>
 
-  constructor(private marvelApi: MarvelApiService) { }
+  constructor(private marvelApi: MarvelApiService,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.characters$ = this.marvelApi.getCharacters();
   }
 
   detail(idHero: number) {
-    console.log('debe navegar a pantalla Detalle: ', idHero);
+    this.router.navigate(['detalle/'+idHero]);
   }
 
 }

@@ -1,6 +1,21 @@
 <div class="container">
-  <span>Pantalla detalle</span>
-</div>
-<div class="buttons">
+  <div>
+    <div class="spaceBetween">
+      <div class="centrado" >
+        <img class="characterLogo" src="./assets/icons/characters.png" alt="personajes">
+        <span>Comics</span>
+      </div>
+      <div>
+        <label>
+          <input maxlength="128" placeholder="Sort by" size="15" type="text" />
+        </label>
+      </div>
+    </div>
+    <app-comics
+      [comics]="infoCharacter$ | async"
+      (detailEvent)="addFavourite($event)"
+    >
+    </app-comics>
 
+  </div>
 </div>

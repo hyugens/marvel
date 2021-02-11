@@ -17,4 +17,18 @@ export class MarvelApiService {
       pluck<ResponseCharacterMarvel, Data>('data')
     );
   }
+
+  getComicsHero(idHero) {
+    const url = `${environment.url + environment.characters}/${idHero}/comics`;
+    return this.http.get<ResponseCharacterMarvel>(url).pipe(
+      pluck<ResponseCharacterMarvel, Data>('data')
+    );
+  }
+
+  getComicId(idComic) {
+    const url = `${environment.url + environment.comics}/${idComic}`;
+    return this.http.get<ResponseCharacterMarvel>(url).pipe(
+      pluck<ResponseCharacterMarvel, Data>('data')
+    );
+  }
 }
