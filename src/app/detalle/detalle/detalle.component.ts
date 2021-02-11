@@ -35,4 +35,8 @@ export class DetalleComponent implements OnInit {
       console.log(`Dialog result: ${result}`);
     });
   }
+
+  navigateTo(page: number) {
+    console.log('NavigateTo detalle: ', page);
+  }
 }
