@@ -17,7 +17,7 @@ export class PaginatorComponent implements OnInit, OnChanges {
   @Input() limitLength: number;
   @Input() maxResults: number;
   @Output() nextPage = new EventEmitter<number>();
-  actualPage = 1;
+  actualPage = '1';
   rangeButtons = 5;
   maxButtonPage =  1;
   minButtonPage = 1;
@@ -47,12 +47,14 @@ export class PaginatorComponent implements OnInit, OnChanges {
   }
 
   next() {
-    if (this.actualPage < this.totalPages) this.actualPage++;
+    if (Number(this.actualPage) < this.maxButtonPage && Number(this.actualPage) < this.totalPages )
+      this.actualPage = (Number(this.actualPage)+1).toString();
     console.log('ActualPage: ', this.actualPage);
   }
 
   previous() {
-    if (this.actualPage > 1) this.actualPage--;
+    if (Number(this.actualPage) > this.minButtonPage && Number(this.actualPage) > 1)
+      this.actualPage = (Number(this.actualPage)-1).toString();
     console.log('ActualPage: ', this.actualPage);
   }
 
@@ -60,7 +62,7 @@ export class PaginatorComponent implements OnInit, OnChanges {
     this.pages=[];
     const auxMax = this.maxButtonPage + this.rangeButtons;
     this.minButtonPage = this.maxButtonPage + 1;
-    this.actualPage = this.minButtonPage;
+    this.actualPage = this.minButtonPage.toString();
 
     const pageButton = new PaginationButton();
     pageButton.id = 'less'; pageButton.tag = '...';
@@ -85,7 +87,7 @@ export class PaginatorComponent implements OnInit, OnChanges {
     this.pages=[];
     const auxMin = this.minButtonPage - this.rangeButtons;
     this.maxButtonPage = this.minButtonPage -1;
-    this.actualPage = this.maxButtonPage;
+    this.actualPage = this.maxButtonPage.toString();
 
     for( let i = this.minButtonPage -1; i >= 1 && i >= auxMin; i--) {
       const pageButton = new PaginationButton();
