@@ -1,1 +1,25 @@
-<p>modal works!</p>
+<div class="header">
+  <div class="myButton" (click)="closeModal()">
+    <img src="./assets/icons/btn-close.png" alt="closeButton">
+
+  </div>
+</div>
+<div class="container">
+  <div class="img">
+    <img style="width: 200px" [src]="url" alt="">
+  </div>
+  <div class="detail">
+    <h2>{{ title }}</h2>
+    <p>{{ description }}</p>
+  </div>
+</div>
+<div class="botones">
+  <div class="myButton" (click)="addFavourites()">
+    <img src="./assets/icons/btn-favourites-default.png" alt="favoriteIcon">
+    <span>ADD TO FAVOURITES</span>
+  </div>
+  <div class="myButtonDisabled" (click)="buyComic()">
+    <img src="./assets/icons/shopping-cart-primary.png" alt="BuyIcon">
+    <span>BUY FOR $3.99</span>
+  </div>
+</div>

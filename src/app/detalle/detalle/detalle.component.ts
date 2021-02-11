@@ -3,6 +3,8 @@ import {ActivatedRoute} from '@angular/router';
 import {MarvelApiService} from '../../services/marvel-api.service';
 import {Observable} from 'rxjs';
 import {DataComicsCharacter} from '../../interfaces/comicsCharacter';
+import {MatDialog} from '@angular/material/dialog';
+import {ModalComponent} from '../../reusable/modal/modal.component';
 
 @Component({
   selector: 'app-detalle',
@@ -12,6 +14,7 @@ import {DataComicsCharacter} from '../../interfaces/comicsCharacter';
 export class DetalleComponent implements OnInit {
   infoCharacter$: Observable<DataComicsCharacter>;
   constructor(public route: ActivatedRoute,
+              public dialog: MatDialog,
               private marvelApiService: MarvelApiService) { }
 
   ngOnInit(): void {
@@ -25,7 +28,11 @@ export class DetalleComponent implements OnInit {
     this.infoCharacter$ = this.marvelApiService.getComicsHero(id);
   }
 
-  addFavourite(id: number) {
-    console.log('add Favourite: ', id);
+  openComicModal(id: number) {
+    const dialogRef = this.dialog.open(ModalComponent, { data: { idComic: id }, disableClose: true });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    });
   }
 }

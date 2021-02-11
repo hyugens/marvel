@@ -4,6 +4,7 @@ import {environment} from '../../environments/environment';
 import {pluck} from 'rxjs/operators';
 import {Data, ResponseCharacterMarvel} from '../interfaces/character';
 import {DataComicsCharacter, ResponseComicsCharacter} from '../interfaces/comicsCharacter';
+import {DataComicResponse, ResponseComic} from '../interfaces/comic';
 
 @Injectable({
   providedIn: 'root'
@@ -28,8 +29,8 @@ export class MarvelApiService {
 
   getComicId(idComic) {
     const url = `${environment.url + environment.comics}/${idComic}`;
-    return this.http.get<ResponseCharacterMarvel>(url).pipe(
-      pluck<ResponseCharacterMarvel, Data>('data')
+    return this.http.get<ResponseComic>(url).pipe(
+      pluck<ResponseComic, DataComicResponse>('data')
     );
   }
 }
