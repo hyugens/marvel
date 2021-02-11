@@ -1,0 +1,31 @@
+nav {
+  background-color: #2D2727;
+  height: 50px;
+}
+
+.centrado {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.container {
+  display: flex;
+  background-color: #F4F4F4;
+}
+
+.marvelLogo {
+  width: 80px;
+  padding: 9px;
+}
+
+.body {
+  /*display: flex;*/
+}
+
+.pantalla {
+  width: 80%;
+}
+.containerFavoritos {
+  width: 20%;
+}

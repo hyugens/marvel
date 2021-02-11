@@ -1,9 +1,10 @@
 <div class="container">
   <app-card *ngFor="let item of characters?.results"
             class="cardElement"
+            [idHero]="item?.id"
             [heroImg]="item?.thumbnail?.path + '.' + item?.thumbnail?.extension"
             [heroName]="item?.name"
             [description]="item?.description"
-            [related]="item?.stories?.items"
+            (viewMoreEvent)="personajeSelected($event)"
   ></app-card>
 </div>

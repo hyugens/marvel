@@ -1,18 +1,6 @@
-<header>
-  <nav class="centrado">
-    <img class="marvelLogo" src="./assets/icons/marvelLogo.png" alt="Logo Marvel">
-<!--    <form class="form-search">-->
-<!--      <div class="input-group">-->
-    <label>
-      <input maxlength="128" placeholder="Search character" size="15" type="text" />
-    </label>
-    <!--        <span><button class="btn btn-primary"><i class="fa fa-search fa-lg">&nbsp;</i></button></span>-->
-<!--      </div>-->
-<!--    </form>-->
-  </nav>
-</header>
+
 <div class="container">
-  <div class="containerBuscador">
+  <div>
     <div class="spaceBetween">
       <div class="centrado" >
         <img class="characterLogo" src="./assets/icons/characters.png" alt="personajes">
@@ -25,9 +13,11 @@
       </div>
     </div>
 
-    <characters [characters]="characters$ | async" ></characters>
-    <footer> Aquí va el paginador</footer>
+    <characters
+      [characters]="characters$ | async"
+      (detailEvent)="detail($event)"
+    ></characters>
+
   </div>
-  <app-favoritos class="containerFavoritos"></app-favoritos>
 </div>
 

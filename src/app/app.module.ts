@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AuthServiceService} from './services/auth-service.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {FavoritosModule} from './favoritos/favoritos.module';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   imports: [
     HttpClientModule,
     BrowserModule,
+    FavoritosModule,
     AppRoutingModule,
     BrowserAnimationsModule
   ],

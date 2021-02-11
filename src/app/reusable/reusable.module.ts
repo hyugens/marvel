@@ -2,14 +2,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CardComponent } from './card/card.component';
 import {MatDialogModule} from '@angular/material/dialog';
-import {DetalleModule} from '../detalle/detalle.module';
+import { ModalComponent } from './modal/modal.component';
 
 
 @NgModule({
-  declarations: [CardComponent],
+  declarations: [CardComponent, ModalComponent],
   imports: [
     CommonModule,
-    DetalleModule,
     MatDialogModule
   ],
   exports: [CardComponent]

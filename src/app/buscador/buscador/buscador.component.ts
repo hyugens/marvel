@@ -17,4 +17,8 @@ export class BuscadorComponent implements OnInit {
     this.characters$ = this.marvelApi.getCharacters();
   }
 
+  detail(idHero: number) {
+    console.log('debe navegar a pantalla Detalle: ', idHero);
+  }
+
 }

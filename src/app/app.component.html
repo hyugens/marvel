@@ -1,1 +1,18 @@
-<router-outlet></router-outlet>
+<div>
+  <header>
+    <nav class="centrado">
+      <img class="marvelLogo" src="./assets/icons/marvelLogo.png" alt="Logo Marvel">
+      <label>
+        <input maxlength="128" placeholder="Search character" size="15" type="text" />
+      </label>
+      <!--        <span><button class="btn btn-primary"><i class="fa fa-search fa-lg">&nbsp;</i></button></span>-->
+    </nav>
+  </header>
+  <div class="container">
+    <div class="pantalla">
+      <router-outlet></router-outlet>
+      <footer> Aquí va el paginador</footer>
+    </div>
+    <app-favoritos class="containerFavoritos"></app-favoritos>
+  </div>
+</div>

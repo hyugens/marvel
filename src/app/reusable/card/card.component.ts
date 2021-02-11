@@ -1,7 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {StoriesItem} from '../../interfaces/character';
-import {MatDialog} from '@angular/material/dialog';
-import {DetalleComponent} from '../../detalle/detalle/detalle.component';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-card',
@@ -10,22 +7,19 @@ import {DetalleComponent} from '../../detalle/detalle/detalle.component';
 })
 export class CardComponent implements OnInit {
 
+  @Input() idHero: number;
   @Input() heroImg: string;
   @Input() heroName: string;
   @Input() description: string;
-  @Input() related: StoriesItem[];
 
-  constructor(public dialog: MatDialog) { }
+  @Output() viewMoreEvent = new EventEmitter<number>();
+
+  constructor() { }
 
   ngOnInit(): void {
   }
 
-  openDialog() {
-    const dialogRef = this.dialog.open(DetalleComponent);
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
+  viewMore() {
+    this.viewMoreEvent.emit(this.idHero);
   }
-
 }

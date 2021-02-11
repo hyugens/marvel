@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DetalleComponent } from './detalle/detalle.component';
+import {DetalleRoutingModule} from './detalle-routing.module';
 
 
 
@@ -8,7 +9,8 @@ import { DetalleComponent } from './detalle/detalle.component';
   declarations: [DetalleComponent],
   exports: [DetalleComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    DetalleRoutingModule
   ]
 })
 export class DetalleModule { }

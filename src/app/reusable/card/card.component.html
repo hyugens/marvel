@@ -8,20 +8,20 @@
         <h4>{{ heroName }}</h4>
         <p>{{ description }}</p>
       </div>
-      <div class="myButton" (click)="openDialog()">VIEW MORE</div>
+      <div class="myButton" (click)="viewMore()">VIEW MORE</div>
     </div>
   </div>
-  <div>
-    <span>Related comics</span>
-    <div class="footer">
-      <ng-container *ngFor="let storie of related; let i = index">
-        <div  *ngIf="i < 4" style="width: 40%; height: 20px; margin: 5px">
-          <label> {{ storie.name | slice:0:25 }}</label>
-        </div>
-        <div  *ngIf="(i%2 > 0) && related.length < 4" style="width: 40%; height: 20px; margin: 5px">
-        </div>
-      </ng-container>
-    </div>
+<!--  <div>-->
+<!--    <span>Related comics</span>-->
+<!--    <div class="footer">-->
+<!--      <ng-container *ngFor="let storie of related; let i = index">-->
+<!--        <div  *ngIf="i < 4" style="width: 40%; height: 20px; margin: 5px">-->
+<!--          <label> {{ storie.name | slice:0:25 }}</label>-->
+<!--        </div>-->
+<!--        <div  *ngIf="(i%2 > 0) && related.length < 4" style="width: 40%; height: 20px; margin: 5px">-->
+<!--        </div>-->
+<!--      </ng-container>-->
+<!--    </div>-->
 
-  </div>
+<!--  </div>-->
 </div>
