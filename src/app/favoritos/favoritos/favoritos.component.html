@@ -1,1 +1,17 @@
-<p>favoritos works!</p>
+<div class="container">
+  <header class="header">
+    <img src="./assets/icons/favourites.png" alt="favoritos">
+    <span style="margin-left: 5px">My Favourites</span>
+  </header>
+
+  <div class="body">
+    <div *ngFor="let fav of favoritos">
+      <div>
+        <img [src]="fav.url" [alt]="fav.name">
+      </div>
+      <div>
+        <span> {{ fav.description }} </span>
+      </div>
+    </div>
+  </div>
+</div>
