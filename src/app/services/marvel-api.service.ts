@@ -30,7 +30,7 @@ export class MarvelApiService {
     const url = `${environment.url + environment.characters}/${idHero}/comics`;
     let params = new HttpParams();
     if (sort !== '' ) params = params.set('orderBy', sort);
-    if (title !== '' ) params = params.set('orderBy', title);
+    if (title !== '' ) params = params.set('title', title);
     params = params.set('offset', ((Number(pageIndex) -1) * Number(limits)).toString());
     params = params.set('limit', limits);
     return this.http.get<ResponseComicsCharacter>(url, {params}).pipe(
