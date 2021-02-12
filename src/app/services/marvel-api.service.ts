@@ -13,7 +13,7 @@ export class MarvelApiService {
 
   constructor(private http: HttpClient) { }
 
-  getCharacters() {
+  getCharacters(sort, pageIndex) {
     const url = `${environment.url + environment.characters}`;
     return this.http.get<ResponseCharacterMarvel>(url).pipe(
       pluck<ResponseCharacterMarvel, Data>('data')

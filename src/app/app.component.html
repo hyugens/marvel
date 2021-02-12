@@ -3,8 +3,8 @@
     <nav class="centrado">
       <img class="marvelLogo" src="./assets/icons/marvelLogo.png" alt="Logo Marvel">
       <div class="inputBuscado">
-        <form>
-          <input maxlength="128" placeholder="Search character" size="15" type="text" />
+        <form [formGroup]="finder" (ngSubmit)="findCharacter(finder.value.character)">
+          <input formControlName="character"  maxlength="128" placeholder="Search character" size="15" type="text" />
           <div class="divImg">
             <img class="btnImg" src="./assets/icons/search.png" alt="">
           </div>

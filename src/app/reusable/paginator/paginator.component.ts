@@ -40,22 +40,18 @@ export class PaginatorComponent implements OnInit, OnChanges {
   }
 
   navigateTo(page) {
-    console.log('navigateTO: ', page);
     this.actualPage = page;
-    console.log('ActualPage: ', this.actualPage);
-    // this.nextPage.emit(page);
+    this.nextPage.emit(page);
   }
 
   next() {
     if (Number(this.actualPage) < this.maxButtonPage && Number(this.actualPage) < this.totalPages )
       this.actualPage = (Number(this.actualPage)+1).toString();
-    console.log('ActualPage: ', this.actualPage);
   }
 
   previous() {
     if (Number(this.actualPage) > this.minButtonPage && Number(this.actualPage) > 1)
       this.actualPage = (Number(this.actualPage)-1).toString();
-    console.log('ActualPage: ', this.actualPage);
   }
 
   more() {

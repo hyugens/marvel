@@ -1,24 +1,38 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {MarvelApiService} from '../../services/marvel-api.service';
-import {Observable, of} from 'rxjs';
+import {merge, Observable, of, Subject} from 'rxjs';
 import {Data} from '../../interfaces/character';
 import {Router} from '@angular/router';
-import {tap} from 'rxjs/operators';
+import {catchError, map, startWith, switchMap, tap} from 'rxjs/operators';
+import {FormBuilder} from '@angular/forms';
+import {FindCharacterService} from '../../services/find-character.service';
 
 @Component({
   selector: 'app-buscador',
   templateUrl: './buscador.component.html',
   styleUrls: ['./buscador.component.css']
 })
-export class BuscadorComponent implements OnInit {
+export class BuscadorComponent implements OnInit, AfterViewInit {
   characters$: Observable<any>
   maxLength = 1;
   limitLength = 1;
+  page$ = new Subject<number>();
+  findCharacter$ = new Subject<number>();
 
-  constructor(private marvelApi: MarvelApiService,
+  buscador = this.formBuilder.group({
+    sort: [''],
+    paginator: ['']
+  })
+  isLoadingResults: boolean = false;
+  pageFind: number;
+
+  constructor(private formBuilder: FormBuilder,
+              private finderValue: FindCharacterService,
+              private marvelApi: MarvelApiService,
               private router: Router) { }
 
   ngOnInit(): void {
+    this.findCharacter$ = this.finderValue.listenFinder();
     this.characters$ = this.mock().pipe(
       // tap((characters) => {
       //   this.maxLength = characters.total;
@@ -33,12 +47,32 @@ export class BuscadorComponent implements OnInit {
     // );
   }
 
+  ngAfterViewInit() {
+    merge(this.buscador.get('sort').valueChanges, this.page$, this.findCharacter$)
+      .pipe(
+        startWith({}),
+        switchMap(() => {
+          this.isLoadingResults = true;
+          return this.marvelApi.getCharacters(this.buscador.get('sort').value, this.pageFind)
+        }),
+        map(data => {
+          this.isLoadingResults = false;
+          return data;
+        }),
+        catchError(() => {
+          this.isLoadingResults = false;
+          return of([]);
+        })
+      ).subscribe();
+  }
+
   detail(idHero: number) {
     this.router.navigate(['detalle/'+idHero]);
   }
 
   navigateTo(page: number) {
-    console.log('NAVIGATE TO BUSCADOR: ', page);
+    this.pageFind = page;
+    this.page$.next(page);
   }
   mock() {
     return of({

@@ -1,35 +1,36 @@
+<form [formGroup]="buscador">
+  <div class="container">
+    <div>
+      <div class="spaceBetween">
+        <div class="centrado" >
+          <img class="characterLogo" src="./assets/icons/characters.png" alt="personajes">
+          <span>Characters</span>
+        </div>
+        <div class="content-select">
+          <select name="sort" id="sort" formControlName="sort">
+            <option disabled value="">Sort by</option>
+            <option value="name">name</option>
+            <option value="modified">modified</option>
+          </select>
+          <i></i>
+        </div>
+      </div>
 
-<div class="container">
-  <div>
-    <div class="spaceBetween">
-      <div class="centrado" >
-        <img class="characterLogo" src="./assets/icons/characters.png" alt="personajes">
-        <span>Characters</span>
-      </div>
-      <div class="content-select">
-        <select name="sort" id="sort" >
-          <option disabled selected>Sort by</option>
-          <option value="name">name</option>
-          <option value="modified">modified</option>
-        </select>
-        <i></i>
-      </div>
+      <characters
+        [characters]="characters$ | async"
+        (detailEvent)="detail($event)"
+      ></characters>
+
     </div>
-
-    <characters
-      [characters]="characters$ | async"
-      (detailEvent)="detail($event)"
-    ></characters>
-
   </div>
-</div>
-<div>
-  <app-paginator
-    [maxResults]="maxLength"
-    [limitLength]="limitLength"
-    (nextPage)="navigateTo($event)"
-  >
+  <div>
+    <app-paginator
+      [maxResults]="maxLength"
+      [limitLength]="limitLength"
+      (nextPage)="navigateTo($event)"
+    >
 
-  </app-paginator>
-</div>
+    </app-paginator>
+  </div>
+</form>
 

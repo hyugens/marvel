@@ -5,6 +5,7 @@ import { BuscadorRoutingModule } from './buscador-routing.module';
 import {HttpClientModule} from '@angular/common/http';
 import { CharactersComponent } from './characters/characters.component';
 import {ReusableModule} from '../reusable/reusable.module';
+import {ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [BuscadorComponent, CharactersComponent],
@@ -12,7 +13,8 @@ import {ReusableModule} from '../reusable/reusable.module';
     CommonModule,
     HttpClientModule,
     ReusableModule,
-    BuscadorRoutingModule
+    BuscadorRoutingModule,
+    ReactiveFormsModule
   ]
 })
 export class BuscadorModule { }
