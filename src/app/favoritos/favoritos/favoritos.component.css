@@ -4,3 +4,12 @@
   display: flex;
   align-items: center;
 }
+.imgPantalla {
+  width: 30px;
+}
+
+.titlePantalla {
+  font-weight: 600;
+  font-size: 18px;
+  margin-left: 5px
+}

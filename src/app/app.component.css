@@ -44,6 +44,10 @@ input {
   background-color: #F4F4F4;
 }
 
+.marginContainer {
+  margin: 10px;
+}
+
 .marvelLogo {
   position: absolute;
   left: 0;
@@ -57,7 +61,6 @@ input {
 
 .pantalla {
   width: 80%;
-  margin: 10px;
 }
 .containerFavoritos {
   width: 20%;
