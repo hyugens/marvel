@@ -5,10 +5,16 @@
         <img class="characterLogo" src="./assets/icons/characters.png" alt="personajes">
         <span>Comics</span>
       </div>
-      <div>
-        <label>
-          <input maxlength="128" placeholder="Sort by" size="15" type="text" />
-        </label>
+      <div class="content-select">
+        <select name="sort" id="sort" >
+          <option disabled selected>Sort by</option>
+          <option value="focDate">focDate</option>
+          <option value="onsaleDate">onsaleDate</option>
+          <option value="title">title</option>
+          <option value="issueNumber">issueNumber</option>
+          <option value="issueNumber">issueNumber</option>
+        </select>
+        <i></i>
       </div>
     </div>
     <app-comics
