@@ -2,12 +2,13 @@ import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {MarvelApiService} from '../../services/marvel-api.service';
 import {merge, Observable, of, Subject} from 'rxjs';
-import {DataComicsCharacter} from '../../interfaces/comicsCharacter';
+import {DataComicsCharacter, Result} from '../../interfaces/comicsCharacter';
 import {MatDialog} from '@angular/material/dialog';
 import {ModalComponent} from '../../reusable/modal/modal.component';
 import {catchError, map, startWith, switchMap, tap} from 'rxjs/operators';
 import {FormBuilder} from '@angular/forms';
 import {FindCharacterService} from '../../services/find-character.service';
+import {FavoritosServiceService} from '../../services/favoritos-service.service';
 
 @Component({
   selector: 'app-detalle',
@@ -24,6 +25,7 @@ export class DetalleComponent implements OnInit, AfterViewInit {
   itemsPerPage$ = new Subject<string>();
   findCharacter$: Observable<string>;
   isLoadingResults: boolean = false;
+  dataCharacters: Result[];
 
   detalle = this.formBuilder.group({
     sort: [''],
@@ -33,6 +35,7 @@ export class DetalleComponent implements OnInit, AfterViewInit {
   titleComic: string = '';
   constructor(public route: ActivatedRoute,
               private finderValue: FindCharacterService,
+              private favoritoService: FavoritosServiceService,
               public dialog: MatDialog,
               private formBuilder: FormBuilder,
               private marvelApiService: MarvelApiService) { }
@@ -59,6 +62,7 @@ export class DetalleComponent implements OnInit, AfterViewInit {
           this.isLoadingResults = false;
           this.maxLength = data.total;
           this.limitLength = data.limit;
+          this.dataCharacters = data.results;
           return data;
         }),
         catchError(() => {
@@ -80,5 +84,26 @@ export class DetalleComponent implements OnInit, AfterViewInit {
   navigateTo(page: number) {
     this.pageFind = page;
     this.page$.next(page);
+  }
+  random() {
+    this.favoritoService.addFavourite(this.comicRandom());
+    this.favoritoService.addFavourite(this.comicRandom());
+    this.favoritoService.addFavourite(this.comicRandom());
+  }
+
+  comicRandom() {
+    const auxElementsData = this.dataCharacters;
+    const aux = auxElementsData[this.positionRandom(auxElementsData)];
+
+    const favorito = {
+      id: aux.id,
+      img: aux.thumbnail.path+'.'+aux.thumbnail.extension,
+      title: aux.title
+    }
+    return favorito;
+  }
+
+  positionRandom(array) {
+    return Math.floor(Math.random() * array.length);
   }
 }
