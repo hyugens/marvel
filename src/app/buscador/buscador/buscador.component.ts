@@ -45,7 +45,6 @@ export class BuscadorComponent implements OnInit, AfterViewInit {
       .pipe(
         startWith({}),
         switchMap(() => {
-          console.log('switchMap');
           this.isLoadingResults = true;
           return this.marvelApi.getCharacters(this.nameCharacter, this.buscador.get('sort').value, this.pageFind, this.itemsPerPage)
         }),

@@ -25,8 +25,8 @@
   </div>
   <div>
     <app-paginator
-      [maxResults]="100"
-      [limitLength]="1"
+      [maxResults]="maxLength"
+      [limitLength]="limitLength"
       (nextPage)="navigateTo($event)"
       (itemsPerPage)="changeItemsPerPage($event)"
     >
