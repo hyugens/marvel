@@ -1,6 +1,7 @@
 .container {
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .element {
@@ -25,4 +26,12 @@
 
 .colorText {
   color: #C5C0C1;
+}
+
+.itemsPerPage {
+  margin-left: 10px;
+}
+
+select {
+  margin-left: 5px;
 }

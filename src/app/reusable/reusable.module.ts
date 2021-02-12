@@ -5,6 +5,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { ModalComponent } from './modal/modal.component';
 import { PaginatorComponent } from './paginator/paginator.component';
 import {PipesModule} from '../pipes/pipes.module';
+import {ReactiveFormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -12,7 +13,8 @@ import {PipesModule} from '../pipes/pipes.module';
   imports: [
     CommonModule,
     PipesModule,
-    MatDialogModule
+    MatDialogModule,
+    ReactiveFormsModule
   ],
   exports: [CardComponent, ModalComponent, PaginatorComponent]
 })

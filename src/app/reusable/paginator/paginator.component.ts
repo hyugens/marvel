@@ -1,4 +1,5 @@
 import {Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
+import {FormBuilder} from '@angular/forms';
 
 export class PaginationButton {
   tag: string;
@@ -17,15 +18,23 @@ export class PaginatorComponent implements OnInit, OnChanges {
   @Input() limitLength: number;
   @Input() maxResults: number;
   @Output() nextPage = new EventEmitter<number>();
+  @Output() itemsPerPage = new EventEmitter<string>();
+
+  formPagination = this.formBuilder.group({
+    itemsPerPage: ['10']
+  });
   actualPage = '1';
   rangeButtons = 5;
   maxButtonPage =  1;
   minButtonPage = 1;
   totalPages = 1;
   pages = [];
-  constructor() { }
+  constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+    this.formPagination.get('itemsPerPage').valueChanges.subscribe(items => {
+      this.itemsPerPage.emit(items);
+    })
   }
 
   ngOnChanges() {
@@ -59,6 +68,7 @@ export class PaginatorComponent implements OnInit, OnChanges {
     const auxMax = this.maxButtonPage + this.rangeButtons;
     this.minButtonPage = this.maxButtonPage + 1;
     this.actualPage = this.minButtonPage.toString();
+    this.nextPage.emit(Number(this.actualPage));
 
     const pageButton = new PaginationButton();
     pageButton.id = 'less'; pageButton.tag = '...';
@@ -84,6 +94,7 @@ export class PaginatorComponent implements OnInit, OnChanges {
     const auxMin = this.minButtonPage - this.rangeButtons;
     this.maxButtonPage = this.minButtonPage -1;
     this.actualPage = this.maxButtonPage.toString();
+    this.nextPage.emit(Number(this.actualPage));
 
     for( let i = this.minButtonPage -1; i >= 1 && i >= auxMin; i--) {
       const pageButton = new PaginationButton();

@@ -17,6 +17,7 @@ export class BuscadorComponent implements OnInit, AfterViewInit {
   maxLength = 1;
   limitLength = 1;
   page$ = new Subject<number>();
+  itemsPerPage$ = new Subject<string>();
   findCharacter$ = new Subject<number>();
 
   buscador = this.formBuilder.group({
@@ -24,7 +25,8 @@ export class BuscadorComponent implements OnInit, AfterViewInit {
     paginator: ['']
   })
   isLoadingResults: boolean = false;
-  pageFind: number;
+  pageFind: number = 1;
+  itemsPerPage: string = '10';
 
   constructor(private formBuilder: FormBuilder,
               private finderValue: FindCharacterService,
@@ -33,12 +35,13 @@ export class BuscadorComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.findCharacter$ = this.finderValue.listenFinder();
-    this.characters$ = this.mock().pipe(
-      // tap((characters) => {
-      //   this.maxLength = characters.total;
-      //   this.limitLength = characters.limit;
-      // })
-    );
+    // this.characters$ = this.mock().pipe(
+    //   // tap((characters) => {
+    //   //   this.maxLength = characters.total;
+    //   //   this.limitLength = characters.limit;
+    //   // })
+    // );
+
     // this.characters$ = this.marvelApi.getCharacters().pipe(
     //   tap((characters) => {
     //     this.maxLength = characters.total;
@@ -48,12 +51,13 @@ export class BuscadorComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    merge(this.buscador.get('sort').valueChanges, this.page$, this.findCharacter$)
+    this.characters$ = merge(this.buscador.get('sort').valueChanges, this.page$, this.findCharacter$, this.itemsPerPage$)
       .pipe(
         startWith({}),
         switchMap(() => {
+          console.log('switchMap');
           this.isLoadingResults = true;
-          return this.marvelApi.getCharacters(this.buscador.get('sort').value, this.pageFind)
+          return this.marvelApi.getCharacters(this.buscador.get('sort').value, this.pageFind, this.itemsPerPage)
         }),
         map(data => {
           this.isLoadingResults = false;
@@ -63,11 +67,16 @@ export class BuscadorComponent implements OnInit, AfterViewInit {
           this.isLoadingResults = false;
           return of([]);
         })
-      ).subscribe();
+      );
   }
 
   detail(idHero: number) {
     this.router.navigate(['detalle/'+idHero]);
+  }
+
+  changeItemsPerPage(items) {
+    this.itemsPerPage = items;
+    this.itemsPerPage$.next(items);
   }
 
   navigateTo(page: number) {

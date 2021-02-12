@@ -25,11 +25,11 @@
   </div>
   <div>
     <app-paginator
-      [maxResults]="maxLength"
-      [limitLength]="limitLength"
+      [maxResults]="100"
+      [limitLength]="1"
       (nextPage)="navigateTo($event)"
+      (itemsPerPage)="changeItemsPerPage($event)"
     >
-
     </app-paginator>
   </div>
 </form>

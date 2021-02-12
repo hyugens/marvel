@@ -16,4 +16,15 @@
   <div class="button element" (click)="next()" *ngIf="pages.length > 1">
     <span> > </span>
   </div>
+  <div class="itemsPerPage">
+    <form [formGroup]="formPagination">
+      <span>Items per page: </span>
+      <select formControlName="itemsPerPage" name="itemsPerPage" id="itemsPerPage">
+        <option value="10">10</option>
+        <option value="20">20</option>
+        <option value="50">50</option>
+        <option value="100">100</option>
+      </select>
+    </form>
+</div>
 </div>
