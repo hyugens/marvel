@@ -1,7 +1,7 @@
 <div style="width: 100%">
   <header>
     <nav class="centrado">
-      <img class="marvelLogo" src="./assets/icons/marvelLogo.png" alt="Logo Marvel">
+      <img (click)="home()" class="marvelLogo" src="./assets/icons/marvelLogo.png" alt="Logo Marvel">
       <div class="inputBuscado">
         <form [formGroup]="finder">
           <input formControlName="character"  maxlength="128" placeholder="Search character" size="15" type="text" />

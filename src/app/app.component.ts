@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl} from '@angular/forms';
 import {FindCharacterService} from './services/find-character.service';
 import {debounceTime, distinctUntilChanged} from 'rxjs/operators';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -13,6 +14,7 @@ export class AppComponent implements OnInit{
     character: ['']
   })
   constructor(private formBuilder: FormBuilder,
+              private route: Router,
               private finderValue: FindCharacterService) {
   }
 
@@ -27,4 +29,7 @@ export class AppComponent implements OnInit{
     this.finderValue.finderCharacter(character);
   }
 
+  home() {
+    this.route.navigate(['']);
+  }
 }
