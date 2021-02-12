@@ -13,3 +13,23 @@
   font-size: 18px;
   margin-left: 5px
 }
+
+.btnClose {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  width: 25px;
+  cursor: pointer;
+}
+
+.body {
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.comicFavourite {
+  margin-top: 10px;
+  position: relative;
+  width: 100px;
+}

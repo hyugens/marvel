@@ -32,9 +32,13 @@ export class FavoritosComponent implements OnInit {
 
   listenRemoveFavourite() {
     this.favoritoService.listenRemoveFavourite().subscribe((index) => {
-      this.favoritos.splice(index, 1);
+      const auxIndex = this.favoritos.findIndex((f) => f.id === index);
+      this.favoritos.splice(auxIndex, 1);
       localStorage.setItem('favoritos', JSON.stringify(this.favoritos));
     });
   }
 
+  deleteCommic(fav) {
+    this.favoritoService.removeFavourite(fav.id);
+  }
 }

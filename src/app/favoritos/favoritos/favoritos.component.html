@@ -5,7 +5,8 @@
   </header>
 
   <div class="body">
-    <div *ngFor="let fav of favoritos">
+    <div class="comicFavourite" *ngFor="let fav of favoritos">
+      <img class="btnClose" (click)="deleteCommic(fav)" src="./assets/icons/btn-delete.png" alt="">
       <div>
         <img style="width: 100px" [src]="fav.img" [alt]="fav.title">
       </div>
