@@ -5,6 +5,7 @@ img {
 
 .containerCard {
   background-color: white;
+  padding-top: 10px;
 }
 
 .container {
@@ -61,4 +62,18 @@ img {
   width: 100%;
   display: flex;
   justify-content: center;
+}
+
+@media (max-width: 900px) {
+  img{
+    width: 150px;
+    height: 150px;
+  }
+}
+
+@media (max-width: 600px) {
+  img{
+    width: 100px;
+    height: 100px;
+  }
 }

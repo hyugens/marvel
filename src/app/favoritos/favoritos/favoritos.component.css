@@ -33,3 +33,20 @@
   position: relative;
   width: 100px;
 }
+
+@media (max-width: 600px) {
+  .body {
+    display: flex;
+    flex-direction: row;
+    overflow-x: scroll;
+    align-items: normal;
+  }
+
+  .comicFavourite {
+    margin-top: 10px;
+    position: relative;
+    width: 100px;
+    margin-right: 25px;
+  }
+
+}
