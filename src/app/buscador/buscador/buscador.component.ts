@@ -18,7 +18,7 @@ export class BuscadorComponent implements OnInit, AfterViewInit {
   limitLength = 1;
   page$ = new Subject<number>();
   itemsPerPage$ = new Subject<string>();
-  findCharacter$ = new Subject<number>();
+  findCharacter$: Observable<string>;
 
   buscador = this.formBuilder.group({
     sort: [''],
@@ -27,6 +27,7 @@ export class BuscadorComponent implements OnInit, AfterViewInit {
   isLoadingResults: boolean = false;
   pageFind: number = 1;
   itemsPerPage: string = '10';
+  nameCharacter: string = '';
 
   constructor(private formBuilder: FormBuilder,
               private finderValue: FindCharacterService,
@@ -34,20 +35,9 @@ export class BuscadorComponent implements OnInit, AfterViewInit {
               private router: Router) { }
 
   ngOnInit(): void {
-    this.findCharacter$ = this.finderValue.listenFinder();
-    // this.characters$ = this.mock().pipe(
-    //   // tap((characters) => {
-    //   //   this.maxLength = characters.total;
-    //   //   this.limitLength = characters.limit;
-    //   // })
-    // );
-
-    // this.characters$ = this.marvelApi.getCharacters().pipe(
-    //   tap((characters) => {
-    //     this.maxLength = characters.total;
-    //     this.limitLength = characters.limit;
-    //   })
-    // );
+    this.findCharacter$ = this.finderValue.listenFinder().pipe(
+      tap((finder) => { this.nameCharacter = finder; })
+    );
   }
 
   ngAfterViewInit() {
@@ -57,10 +47,12 @@ export class BuscadorComponent implements OnInit, AfterViewInit {
         switchMap(() => {
           console.log('switchMap');
           this.isLoadingResults = true;
-          return this.marvelApi.getCharacters(this.buscador.get('sort').value, this.pageFind, this.itemsPerPage)
+          return this.marvelApi.getCharacters(this.nameCharacter, this.buscador.get('sort').value, this.pageFind, this.itemsPerPage)
         }),
         map(data => {
           this.isLoadingResults = false;
+          this.maxLength = data.total;
+          this.limitLength = data.limit;
           return data;
         }),
         catchError(() => {

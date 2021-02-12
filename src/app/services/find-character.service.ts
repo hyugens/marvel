@@ -5,7 +5,7 @@ import {Subject} from 'rxjs';
   providedIn: 'root'
 })
 export class FindCharacterService {
-  finder$ = new Subject<number>();
+  finder$ = new Subject<string>();
 
   constructor() { }
 

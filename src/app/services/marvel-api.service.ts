@@ -14,10 +14,11 @@ export class MarvelApiService {
 
   constructor(private http: HttpClient) { }
 
-  getCharacters(sort, pageIndex, limits) {
+  getCharacters(name, sort, pageIndex, limits) {
     const url = `${environment.url + environment.characters}`;
     let params = new HttpParams();
     if (sort !== '' ) params = params.set('orderBy', sort);
+    if (name !== '' ) params = params.set('name', name);
     params = params.set('offset', ((Number(pageIndex) -1) * Number(limits)).toString());
     params = params.set('limit', limits);
     return this.http.get<ResponseCharacterMarvel>(url, {params}).pipe(
@@ -25,9 +26,14 @@ export class MarvelApiService {
     );
   }
 
-  getComicsHero(idHero) {
+  getComicsHero(idHero, title, sort, pageIndex, limits) {
     const url = `${environment.url + environment.characters}/${idHero}/comics`;
-    return this.http.get<ResponseComicsCharacter>(url).pipe(
+    let params = new HttpParams();
+    if (sort !== '' ) params = params.set('orderBy', sort);
+    if (title !== '' ) params = params.set('orderBy', title);
+    params = params.set('offset', ((Number(pageIndex) -1) * Number(limits)).toString());
+    params = params.set('limit', limits);
+    return this.http.get<ResponseComicsCharacter>(url, {params}).pipe(
       pluck<ResponseComicsCharacter, DataComicsCharacter>('data')
     );
   }

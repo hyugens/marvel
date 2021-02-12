@@ -1,36 +1,39 @@
-<div class="container">
-  <div>
-    <div class="spaceBetween">
-      <div class="centrado" >
-        <img class="characterLogo" src="./assets/icons/characters.png" alt="personajes">
-        <span>Comics</span>
+<form [formGroup]="detalle">
+  <div class="container">
+    <div>
+      <div class="spaceBetween">
+        <div class="centrado">
+          <img class="characterLogo" src="./assets/icons/characters.png" alt="personajes">
+          <span>Comics</span>
+        </div>
+        <div class="content-select">
+          <select name="sort" id="sort" formControlName="sort">
+            <option disabled value="">Sort by</option>
+            <option value="focDate">focDate</option>
+            <option value="onsaleDate">onsaleDate</option>
+            <option value="title">title</option>
+            <option value="issueNumber">issueNumber</option>
+            <option value="issueNumber">issueNumber</option>
+          </select>
+          <i></i>
+        </div>
       </div>
-      <div class="content-select">
-        <select name="sort" id="sort" >
-          <option disabled selected>Sort by</option>
-          <option value="focDate">focDate</option>
-          <option value="onsaleDate">onsaleDate</option>
-          <option value="title">title</option>
-          <option value="issueNumber">issueNumber</option>
-          <option value="issueNumber">issueNumber</option>
-        </select>
-        <i></i>
-      </div>
+      <app-comics
+        [comics]="infoCharacter$ | async"
+        (detailEvent)="openComicModal($event)"
+      >
+      </app-comics>
+
     </div>
-    <app-comics
-      [comics]="infoCharacter$ | async"
-      (detailEvent)="openComicModal($event)"
-    >
-    </app-comics>
-
   </div>
-</div>
-<div>
-  <app-paginator
-    [maxResults]="20"
-    [limitLength]="15"
-    (nextPage)="navigateTo($event)"
-  >
+  <div>
+    <app-paginator
+      [maxResults]="maxLength"
+      [limitLength]="limitLength"
+      (nextPage)="navigateTo($event)"
+      (itemsPerPage)="changeItemsPerPage($event)"
+    >
 
-  </app-paginator>
-</div>
+    </app-paginator>
+  </div>
+</form>
