@@ -42,7 +42,7 @@ img {
 }
 
 .myButton {
-  margin-top: 10px;
+  margin: 10px 0;
   /*box-shadow:inset 0px 39px 0px -24px #e67a73;*/
   background-color:#EC1E23;
   border-radius:4px;
@@ -52,7 +52,13 @@ img {
   color:#ffffff;
   /*font-family:Arial;*/
   font-size:15px;
-  padding:6px 15px;
+  padding:6px 6px;
   text-decoration:none;
   text-shadow:0 1px 0 #b23e35;
+}
+
+.containerButton {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }

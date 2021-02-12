@@ -5,10 +5,12 @@
     </div>
     <div class="description">
       <div style="min-height: 200px; max-height: 300px">
-        <h4>{{ heroName }}</h4>
-        <p>{{ description }}</p>
+        <h4> <b> {{ heroName }} </b> </h4>
+        <p>{{ description | truncateDesc: 100 }}</p>
       </div>
-      <div class="myButton" (click)="viewMore()">{{ titleButton }}</div>
+      <div class="containerButton">
+        <div class="myButton" (click)="viewMore()">{{ titleButton }}</div>
+      </div>
     </div>
   </div>
 <!--  <div>-->
