@@ -52,7 +52,6 @@ export class DetalleComponent implements OnInit, AfterViewInit {
       .pipe(
         startWith({}),
         switchMap((t) => {
-          console.log('switchMap', t);
           this.isLoadingResults = true;
           return this.marvelApiService.getComicsHero(this.idComic, this.titleComic, this.detalle.get('sort').value, this.pageFind, this.itemsPerPage)
         }),

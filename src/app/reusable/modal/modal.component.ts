@@ -20,7 +20,6 @@ export class ModalComponent implements OnInit {
               private marvelApiService: MarvelApiService) { }
 
   ngOnInit(): void {
-    console.log('INFO.DATA: ', this.data.idComic);
     this.marvelApiService.getComicId(this.data.idComic).subscribe((info: DataComicResponse) => {
       this.url = `${info.results[0].thumbnail.path}.${info.results[0].thumbnail.extension}`;
       this.title = info.results[0].title;

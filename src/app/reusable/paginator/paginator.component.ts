@@ -44,10 +44,7 @@ export class PaginatorComponent implements OnInit, OnChanges {
   }
 
   setPagination() {
-    console.log('MAXresults: ', this.maxResults);
-    console.log('limitsLength: ', this.limitLength);
     this.totalPages = Math.ceil(this.maxResults / this.limitLength);
-    console.log('totalPages: ', this.totalPages);
     this.viewInitialButtons();
   }
 

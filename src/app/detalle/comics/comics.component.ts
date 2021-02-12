@@ -17,7 +17,6 @@ export class ComicsComponent implements OnInit, OnChanges {
 
   ngOnChanges() {
     if(this.comics) {
-      console.log('comics: ', this.comics);
     }
   }
 

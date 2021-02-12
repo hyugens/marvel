@@ -24,7 +24,6 @@ export class AppComponent implements OnInit{
   }
 
   findCharacter(character) {
-    console.log('character: ', character);
     this.finderValue.finderCharacter(character);
   }
 
